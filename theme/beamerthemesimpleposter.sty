@@ -1,0 +1,97 @@
+\ProvidesPackage{beamerthemesimpleposter}[2026/08/19 A0 poster theme]
+
+\mode<presentation>
+
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+\RequirePackage[sfdefault]{FiraSans}
+\RequirePackage[T1]{fontenc}
+
+\definecolor{posteraccent}{RGB}{19,61,148}
+\definecolor{posterdark}{RGB}{25,25,30}
+
+\setbeamercolor*{normal text}{fg=posterdark,bg=white}
+\setbeamercolor*{structure}{fg=posteraccent}
+\setbeamercolor*{item}{fg=posteraccent}
+\setbeamercolor*{alerted text}{fg=posteraccent}
+
+\setbeamercolor{headline}{fg=white,bg=posteraccent}
+\setbeamercolor{frametitle}{fg=posterdark,bg=posteraccent!12!white}
+\setbeamercolor{title in headline}{fg=white}
+\setbeamercolor{author in headline}{fg=white}
+\setbeamercolor{institute in headline}{fg=white}
+\setbeamercolor{footline}{fg=white,bg=posteraccent!85!black}
+
+\setbeamercolor*{block title}{fg=white,bg=posteraccent}
+\setbeamercolor*{block body}{fg=posterdark,bg=posteraccent!6!white}
+\setbeamerfont{block title}{size=\Large,series=\bfseries}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{caption}{size=\small}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{itemize items}[triangle]
+\setbeamertemplate{navigation symbols}{}
+
+% Header/footer content, overridable from the document preamble.
+\newcommand{\posterleftlogo}{\placeholderbox{0.75\linewidth}{9em}{LOGO}}
+\newcommand{\posterrightlogo}{\placeholderbox{0.75\linewidth}{9em}{LOGO}}
+\newcommand{\posterfooter}{\textbf{example.org/your-lab} \quad
+contact@example.org}
+
+\newcommand{\placeholderbox}[3]{%
+  \begin{tikzpicture}
+    \node[draw=posteraccent!50,fill=posteraccent!8,line width=2pt,
+      minimum width=#1,minimum height=#2,align=center,
+    font=\Large\bfseries,text=posteraccent!70] {#3};
+  \end{tikzpicture}%
+}
+
+\setbeamertemplate{block begin}{
+  \vskip2ex
+  \begin{beamercolorbox}[leftskip=1.5ex,colsep*=.6ex,sep=.4ex]{block title}%
+    \usebeamerfont*{block title}\insertblocktitle\strut
+  \end{beamercolorbox}%
+  \nointerlineskip\vskip-0.5pt%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=.75ex,sep=1.5ex,vmode]{block body}%
+    \vskip-.75ex\vbox{}%
+  }
+  \setbeamertemplate{block end}{
+  \end{beamercolorbox}
+  \vskip1ex
+}
+
+\setbeamertemplate{frametitle}{
+  \begin{beamercolorbox}[wd=\paperwidth,sep=.8em]{frametitle}
+    \centering\usebeamerfont{frametitle}\insertframetitle
+  \end{beamercolorbox}
+  \vskip1ex
+}
+
+\setbeamertemplate{headline}{
+  \leavevmode
+  \begin{beamercolorbox}[wd=\paperwidth,sep=1.5em]{headline}
+    \begin{columns}[c]
+      \column{.14\paperwidth}
+      \centering\posterleftlogo
+      \column{.68\paperwidth}
+      \centering
+      {\usebeamercolor[fg]{title in headline}\veryHuge\bfseries\inserttitle\par}
+      \vskip1ex
+      {\usebeamercolor[fg]{author in headline}\Huge\insertauthor\par}
+      \vskip1ex
+      {\usebeamercolor[fg]{institute in headline}\large\insertinstitute\par}
+      \column{.14\paperwidth}
+      \centering\posterrightlogo
+    \end{columns}
+  \end{beamercolorbox}
+  \vskip1ex
+}
+
+\setbeamertemplate{footline}{
+  \vskip1ex
+  \begin{beamercolorbox}[wd=\paperwidth,sep=1em]{footline}
+    \centering\large\posterfooter
+  \end{beamercolorbox}
+}
+
+\mode<all>
